@@ -1,7 +1,10 @@
 #include "IDeck.hpp"
+#include <algorithm>
 #include <iostream>
 #include <memory>
+#include <random>
 #include <vector>
+
 /**
  * @brief Deck class
  *
@@ -25,6 +28,13 @@ public:
     for (const auto &c : cards) {
       std::cout << c->get_suit() << " " << c->get_value() << std::endl;
     }
+  }
+
+  void shuffle() override {
+    // Obtain a time-based seed
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+
+    std::shuffle(cards.begin(), cards.end(), std::default_random_engine(seed));
   }
 
   ~Deck() override { std::cout << "Destroyed deck" << std::endl; }
