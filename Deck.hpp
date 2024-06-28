@@ -1,3 +1,5 @@
+#ifndef DECK_HPP
+#define DECK_HPP
 #include "IDeck.hpp"
 #include <algorithm>
 #include <iostream>
@@ -51,3 +53,4 @@ private:
     }
   }
 };
+#endif
