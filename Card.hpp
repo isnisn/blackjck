@@ -12,10 +12,7 @@ public:
   T get_value() const { return value; }
   U get_suit() const { return suit; }
 
-  Card(T value, U suit) : value(value), suit(suit) {
-    value = 0;
-    suit = ' ';
-  }
+  Card(T value, U suit) : value(value), suit(suit) {}
 
   ~Card() {
     // std::cout << "Destruction of card\n";
