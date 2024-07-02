@@ -1,17 +1,27 @@
 
 #include "Deck.hpp"
 #include "Hand.hpp"
+#include "Player.hpp"
+#include <memory>
+#include <vector>
 
 int main() {
+  std::vector<Player> players;
+  Deck<int, char> deck;
 
-  std::unique_ptr<Deck<int, char>> deck = std::make_unique<Deck<int, char>>();
-  deck->print_deck();
-  deck->shuffle();
-  deck->print_deck();
-  Hand<5> hand(deck);
-  std::cout << "Printing hand" << std::endl;
-  std::cout << "Hand size: " << hand.get_hand_size() << std::endl;
-  hand.print_hand();
+  deck.shuffle();
+
+  // Create some players
+  Player player1("Player 1");
+  players.emplace_back(std::move(player1));
+
+  // Process players
+  for (auto &p : players) {
+    p.print_player();
+    p.set_hand(std::make_shared<Hand<5>>(deck));
+    p.get_hand();
+    std::cout << std::endl;
+  }
 
   return 0;
 }
