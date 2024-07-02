@@ -2,7 +2,7 @@
 #ifndef DECK_HPP
 #define DECK_HPP
 
-#include "Card.hpp" // Assuming there's a Card header file
+#include "Card.hpp"
 #include "IDeck.hpp"
 #include <algorithm>
 #include <iostream>
