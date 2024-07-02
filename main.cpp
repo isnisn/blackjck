@@ -7,7 +7,7 @@
 
 int main() {
   std::vector<Player> players;
-  Deck<int, char> deck;
+  Deck<int, char> deck(1);
 
   deck.shuffle();
 
@@ -22,6 +22,8 @@ int main() {
     p.get_hand();
     std::cout << std::endl;
   }
+
+  deck.print_deck();
 
   return 0;
 }

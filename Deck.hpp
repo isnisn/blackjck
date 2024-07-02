@@ -5,6 +5,7 @@
 #include "Card.hpp"
 #include "IDeck.hpp"
 #include <algorithm>
+#include <cstdint>
 #include <iostream>
 #include <memory>
 #include <random>
@@ -18,7 +19,7 @@
  */
 template <typename T, typename U> class Deck : public IDeck<T, U> {
 public:
-  Deck() { create_cards(); }
+  Deck(uint8_t no_decks) : no_decks(no_decks) { create_cards(); }
 
   // Destructor
   ~Deck() override { std::cout << "Destroyed deck" << std::endl; }
@@ -87,11 +88,14 @@ public:
 private:
   std::vector<std::unique_ptr<Card<int, char>>> cards;
   char suits[4] = {'S', 'H', 'D', 'C'};
+  uint8_t no_decks = 3;
 
   void create_cards() override {
-    for (int i = 0; i < 4; ++i) {
-      for (int j = 2; j <= 14; ++j) {
-        cards.push_back(std::make_unique<Card<T, U>>(j, suits[i]));
+    for (uint8_t x = 0; x < no_decks; x++) {
+      for (uint8_t i = 0; i < 4; ++i) {
+        for (uint8_t j = 2; j <= 14; ++j) {
+          cards.push_back(std::make_unique<Card<T, U>>(j, suits[i]));
+        }
       }
     }
   }
