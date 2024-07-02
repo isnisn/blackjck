@@ -12,7 +12,7 @@ public:
    *
    * @param name
    */
-  explicit Player(const std::string &name) : name(name) {
+  Player(const std::string &name) : name(name) {
     std::cout << "Created player " << name << std::endl;
   }
 
