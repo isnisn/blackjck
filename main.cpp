@@ -1,7 +1,7 @@
 
-#include "Deck.hpp"
-#include "Hand.hpp"
-#include "Player.hpp"
+#include "include/Deck.hpp"
+#include "include/Hand.hpp"
+#include "include/Player.hpp"
 #include <memory>
 #include <vector>
 
