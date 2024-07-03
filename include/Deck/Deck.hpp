@@ -2,7 +2,7 @@
 #ifndef DECK_HPP
 #define DECK_HPP
 
-#include "Card.hpp"
+#include "../Card.hpp"
 #include "IDeck.hpp"
 #include <algorithm>
 #include <cstdint>

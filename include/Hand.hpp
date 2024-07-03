@@ -1,9 +1,8 @@
-
 #ifndef HAND_HPP
 #define HAND_HPP
 
 #include "Card.hpp"
-#include "Deck.hpp"
+#include "Deck/Deck.hpp"
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -20,9 +19,9 @@ public:
     hand = deck->generate_hand(N);
   }
 
-  Hand(Deck<int, char> &deck) {
+  Hand(const std::shared_ptr<IDeck<int, char>> &deck) {
     std::cout << "Creating hand" << std::endl;
-    hand = deck.generate_hand(N);
+    hand = deck->generate_hand(N);
   }
 
   ~Hand() { std::cout << "Destroyed hand" << std::endl; }

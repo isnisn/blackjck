@@ -1,5 +1,5 @@
 
-#include "../Deck.hpp"
+#include "../Deck/Deck.hpp"
 #include "../Game/IGameStyle.hpp"
 #include <cstdint>
 #include <memory>

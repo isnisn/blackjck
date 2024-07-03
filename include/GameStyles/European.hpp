@@ -1,5 +1,5 @@
 
-#include "../Deck.hpp"
+#include "../Deck/Deck.hpp"
 #include "../Game/IGameStyle.hpp"
 #include <cstdint>
 #include <memory>
@@ -17,6 +17,8 @@ public:
   European() { this->setup(); }
   void play() override {
     std::cout << "Starting a European style game of blackjack!" << std::endl;
+    deck->shuffle();
+    deck->print_deck();
     return;
   }
 

@@ -1,6 +1,6 @@
 #ifndef IDECK_HPP
 #define IDECK_HPP
-#include "Card.hpp"
+#include "../Card.hpp"
 #include <memory>
 #include <vector>
 
