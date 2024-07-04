@@ -10,7 +10,9 @@ public:
    * Transfer ownership of the ptr to the choosen game style.
    */
   explicit Game(std::unique_ptr<IGameStyle> &&game_style = {})
-      : game_style(std::move(game_style)) {}
+      : game_style(std::move(game_style)) {
+    start_game();
+  }
 
   /**
    * Start the game with the choose game style
