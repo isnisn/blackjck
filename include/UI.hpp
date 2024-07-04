@@ -1,3 +1,6 @@
+#ifndef UI_HPP
+#define UI_HPP
+
 #include <iostream>
 #include <ostream>
 #include <string>
@@ -20,3 +23,4 @@ private:
   UI() = default;
   ~UI() = default;
 };
+#endif
