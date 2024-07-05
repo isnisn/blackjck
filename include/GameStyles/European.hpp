@@ -18,7 +18,7 @@ public:
   void play() override {
     std::cout << "Starting a European style game of blackjack!" << std::endl;
     deck->shuffle();
-    deck->print_deck();
+    // deck->print_deck();
     return;
   }
 
