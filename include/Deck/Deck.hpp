@@ -3,6 +3,7 @@
 #define DECK_HPP
 
 #include "../Card.hpp"
+#include "../UI.hpp"
 #include "IDeck.hpp"
 #include <algorithm>
 #include <cstdint>
@@ -77,6 +78,8 @@ public:
     // Obtain a time-based seed
     unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::shuffle(cards.begin(), cards.end(), std::default_random_engine(seed));
+
+    UI::getInstance().print("Deck shuffled", m_From);
   }
 
   std::unique_ptr<Card<T, U>> draw_card() override {
@@ -86,6 +89,7 @@ public:
   }
 
 private:
+  const std::string m_From = "Dealer";
   std::vector<std::unique_ptr<Card<int, char>>> cards;
   char suits[4] = {'S', 'H', 'D', 'C'};
   uint8_t no_decks = 3;
