@@ -2,7 +2,7 @@
 
 class PlayerService : public IPlayer {
 public:
-  std::vector<std::shared_ptr<Player>>
+  std::vector<std::shared_ptr<Player>> const
   create_players(int num_players) override {
     std::vector<std::shared_ptr<Player>> players;
 
@@ -15,7 +15,7 @@ public:
     return players;
   }
 
-  std::shared_ptr<Player> create_player() override {
+  std::shared_ptr<Player> const create_player() override {
     // Prompt for name
 
     return std::make_shared<Player>();
