@@ -44,21 +44,23 @@ public:
     }
   }
 
-  Hand get_hand() const { return *this; }
+  const Hand &get_hand() const { return *this; }
 
   /**
    * @brief Get card from hand
    *
    * @param index
-   * @return Card<int, char>
+   * @return const Card<int, char>
    */
-  Card<int, char> get_card(const size_t &index) const { return *hand[index]; }
+  const Card<int, char> &get_card(const size_t &index) const {
+    return *hand[index];
+  }
 
   /**
    * @brief Print hand
    *
    */
-  void print_hand() const {
+  void print_hand() {
     for (const auto &c : hand) {
       std::cout << c->get_suit() << " " << c->get_value() << std::endl;
     }
