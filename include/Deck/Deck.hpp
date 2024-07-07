@@ -32,7 +32,6 @@ public:
   // Move constructor
   Deck(Deck &&other) noexcept : cards(std::move(other.cards)) {
     other.cards.clear(); // Ensure source is left in a valid state
-    std::cout << "Deck moved" << std::endl;
   }
 
   // Move assignment operator
@@ -44,12 +43,15 @@ public:
       // Move resources from source to destination
       cards = std::move(other.cards);
       other.cards.clear();
-
-      std::cout << "Deck moved via assignment" << std::endl;
     }
     return *this;
   }
 
+  /**
+   * @brief Generate a hand of cards
+   *
+   * @return std::vector<std::unique_ptr<Card>
+   */
   std::vector<std::unique_ptr<Card<T, U>>>
   generate_hand(const int &&n) override {
     std::vector<std::unique_ptr<Card<T, U>>> hand;
@@ -57,6 +59,7 @@ public:
       // Move card from deck to hand
       hand.emplace_back(std::move(cards.back()));
       // Remove card from deck
+
       cards.pop_back();
     }
     return hand;
@@ -64,11 +67,15 @@ public:
 
   void print_deck() override {
     if (cards.empty()) {
-      std::cout << "Deck is empty" << std::endl;
+      UI::getInstance().print("Deck is empty", m_From);
       return;
     }
 
     std::cout << "Deck size: " << cards.size() << std::endl;
+
+    UI::getInstance().print("Deck size: " + std::to_string(cards.size()),
+                            m_From);
+
     for (const auto &c : cards) {
       std::cout << c->get_suit() << " " << c->get_value() << std::endl;
     }
@@ -90,9 +97,11 @@ public:
 
 private:
   const std::string m_From = "Dealer";
-  std::vector<std::unique_ptr<Card<int, char>>> cards;
+
+  std::vector<std::unique_ptr<Card<T, U>>> cards;
   char suits[4] = {'S', 'H', 'D', 'C'};
-  uint8_t no_decks = 3;
+
+  uint8_t no_decks;
 
   void create_cards() override {
     for (uint8_t x = 0; x < no_decks; x++) {
