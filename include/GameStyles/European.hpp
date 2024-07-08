@@ -1,7 +1,7 @@
 
+#include "../Dealer/DealerService.hpp"
 #include "../Deck/Deck.hpp"
 #include "../Game/IGameStyle.hpp"
-#include "../Player.hpp"
 #include "../PlayerService.hpp"
 #include <cstdint>
 #include <memory>
@@ -13,9 +13,9 @@ class European : public IGameStyle {
 private:
   uint8_t num_decks = 2;
   std::unique_ptr<Deck<int, char>> deck;
-  std::vector<std::shared_ptr<Player>> players;
+
   PlayerService player_service;
-  // .. other rules
+  DealerService dealer_service;
 
 public:
   European() { this->setup(); }
@@ -26,7 +26,7 @@ public:
     UI::getInstance().print("Starting a European style game of blackjack!",
                             "Dealer");
     deck->shuffle();
-    deck->print_deck();
+    // deck->print_deck();
     return;
   }
 
@@ -42,8 +42,5 @@ private:
   void setup() override {
     // Init deck and so on
     deck = std::make_unique<Deck<int, char>>(num_decks);
-
-    // Create players
-    player_service.create_players(3, players);
   }
 };
