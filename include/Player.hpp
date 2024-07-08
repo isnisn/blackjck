@@ -1,11 +1,13 @@
+#ifndef PLAYER_HPP
+#define PLAYER_HPP
 
-#pragma once
 #include "Hand.hpp"
+#include "IPlayer.hpp"
 #include <iostream>
 #include <memory>
 #include <string>
 
-class Player {
+class Player : public IPlayer {
 public:
   /**
    * @brief Construct a new Player object
@@ -39,20 +41,18 @@ public:
   Player(const Player &) = delete;
   Player &operator=(const Player &) = delete;
 
-  void print_player() const {
+  void print_player() override {
     std::cout << "Player name: " << name << std::endl;
   }
 
-  void get_hand() const {
-    if (!hand) {
-      return;
-    }
-    hand->print_hand();
-  }
+  int get_hand_value() override { return 0; }
 
-  void set_hand(std::shared_ptr<Hand<5>> hand) { this->hand = std::move(hand); }
+  void set_hand(std::shared_ptr<Hand<2>> hand) override {
+    this->hand = std::move(hand);
+  }
 
 private:
   std::string name;
-  std::shared_ptr<Hand<5>> hand;
+  std::shared_ptr<Hand<2>> hand;
 };
+#endif

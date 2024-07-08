@@ -1,6 +1,8 @@
-#include "IPlayer.hpp"
+#ifndef PLAYER_SERVICE_HPP
+#define PLAYER_SERVICE_HPP
+#include "Player.hpp"
 
-class PlayerService : public IPlayer {
+class PlayerService {
 public:
   void create_players(int num_players,
                       std::vector<std::shared_ptr<Player>> &players) {
@@ -15,3 +17,4 @@ public:
     return std::make_shared<Player>(name);
   }
 };
+#endif
