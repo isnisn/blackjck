@@ -9,13 +9,17 @@
  */
 class American : public IGameStyle {
 private:
-  uint8_t num_decks = 6;
+  unsigned int num_decks = 6;
   std::shared_ptr<Deck<int, char>> deck;
   // .. other rules
 
 public:
   American() { this->setup(); }
-  void play() override { return; }
+  void play(const std::vector<std::shared_ptr<IPlayer>> &players) override {
+    return;
+  }
+
+  unsigned int get_num_deck() override { return num_decks; }
 
 private:
   void setup() override {

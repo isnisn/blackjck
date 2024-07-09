@@ -1,14 +1,18 @@
+#include "../Deck/DeckService.hpp"
 #include "../PlayerService.hpp"
 #include "IGameStyle.hpp"
 #include <memory>
+#include <ostream>
 
 class Game {
 private:
   std::unique_ptr<IGameStyle> game_style;
 
-  // We own the players
   PlayerService player_service;
-  std::vector<std::shared_ptr<Player>> players;
+  DeckService deck_service;
+
+  std::vector<std::shared_ptr<IPlayer>> players;
+  std::shared_ptr<Deck<int, char>> deck;
 
 public:
   /**
@@ -16,7 +20,6 @@ public:
    */
   explicit Game(std::unique_ptr<IGameStyle> &&game_style = {})
       : game_style(std::move(game_style)) {
-    player_service.create_players(2, players);
 
     start_game();
   }
@@ -24,9 +27,17 @@ public:
   /**
    * Start the game with the choose game style
    */
-  void start_game() const {
+  void start_game() {
     if (game_style) {
-      game_style->play();
+
+      // Create players
+      player_service.create_players(2, players);
+
+      // Create the deck
+      deck = std::make_shared<Deck<int, char>>(game_style->get_num_deck());
+
+      // Start the game with our deck, dealer and players.
+      game_style->play(players);
     }
   }
 };
