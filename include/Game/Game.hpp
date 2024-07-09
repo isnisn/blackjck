@@ -12,7 +12,7 @@ private:
   DeckService deck_service;
 
   std::vector<std::shared_ptr<IPlayer>> players;
-  std::shared_ptr<Deck<int, char>> deck;
+  std::shared_ptr<IDeck<int, char>> deck;
 
 public:
   /**
@@ -37,7 +37,7 @@ public:
       deck = std::make_shared<Deck<int, char>>(game_style->get_num_deck());
 
       // Start the game with our deck, dealer and players.
-      game_style->play(players);
+      game_style->play(players, deck);
     }
   }
 };
