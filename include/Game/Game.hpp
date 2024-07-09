@@ -2,7 +2,6 @@
 #include "../PlayerService.hpp"
 #include "IGameStyle.hpp"
 #include <memory>
-#include <ostream>
 
 class Game {
 private:

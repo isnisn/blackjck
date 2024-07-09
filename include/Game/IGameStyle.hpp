@@ -1,8 +1,6 @@
 #pragma once
 #include "../IPlayer.hpp"
 
-#include <cstdint>
-
 /**
  * Our interface to choose what game style of blackjack we want.
  */
