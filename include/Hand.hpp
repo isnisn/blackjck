@@ -5,6 +5,7 @@
 #include "Deck/Deck.hpp"
 #include <iostream>
 #include <memory>
+#include <ostream>
 #include <utility>
 #include <vector>
 
@@ -15,7 +16,10 @@
  */
 template <size_t N> class Hand {
 public:
-  Hand(const std::unique_ptr<Deck<int, char>> &deck) {
+  // Default constructor
+  Hand() {}
+
+  Hand(const std::unique_ptr<IDeck<int, char>> &deck) {
     hand = deck->generate_hand(N);
   }
 
@@ -44,7 +48,9 @@ public:
     }
   }
 
-  const Hand &get_hand() const { return *this; }
+  const std::vector<std::unique_ptr<Card<int, char>>> &get_cards() const {
+    return hand;
+  }
 
   /**
    * @brief Get card from hand
@@ -54,6 +60,16 @@ public:
    */
   const Card<int, char> &get_card(const size_t &index) const {
     return *hand[index];
+  }
+
+  void add_card(std::unique_ptr<Card<int, char>> &&card) {
+
+    std::cout << "Adding card to hand" << " Card " << card->get_suit()
+              << std::endl;
+
+    hand.push_back(std::move(card));
+
+    std::cout << "Hand size: " << hand.size() << std::endl;
   }
 
   /**
@@ -68,7 +84,7 @@ public:
   size_t get_hand_size() const { return hand.size(); }
 
 private:
-  const size_t max_hand_size = N;
+  const size_t max_hand_size = 12;
   std::vector<std::unique_ptr<Card<int, char>>> hand;
 };
 
