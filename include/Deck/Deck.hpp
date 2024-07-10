@@ -90,6 +90,10 @@ public:
   }
 
   std::unique_ptr<Card<T, U>> draw_card() override {
+    if (cards.empty()) {
+      return nullptr;
+    }
+
     std::unique_ptr<Card<T, U>> card = std::move(cards.back());
     cards.pop_back();
     return card;
